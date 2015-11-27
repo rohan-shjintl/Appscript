@@ -1,0 +1,46 @@
+function sendEmail2() {  
+  
+  var to = 'rohand@shjintl.com';
+  
+  var current_date = temp();
+  
+  var subject = "Backup ".concat(current_date);
+
+  var message = 'PFA';
+  
+  var id="1ipX3OF_aImOPROKrpvSvALZAHIzO9LqHZXkHtPpboyA"
+  
+  var file = DriveApp.getFileById(id);
+  
+  MailApp.sendEmail({
+   to:to,
+   subject:subject, 
+   body:message,
+   attachments:file});  
+  
+}
+
+function temp()
+{
+ var date= new Date;
+  
+   //get current year
+ var yy = date.getFullYear().toString().substr(2,2);
+ 
+ //get current month
+ var mm = pad((date.getMonth()+1).toString(),10);
+ 
+ //get current date
+ var dd = pad(date.getDate().toString(),10); 
+   
+  var formatted_date = "".concat(mm,"/",dd,"/",yy);
+  
+  return formatted_date;
+}
+
+//to add zeros in case string is less than 10
+function pad (str, max) 
+{   
+  var str=(str<max?'0':'')+str;
+  return str;
+}
